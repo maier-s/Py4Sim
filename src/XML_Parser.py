@@ -10,6 +10,8 @@ class XML_Parser:
     def get_system_data(self):
         self.system_block_data = self.root_data.findall("./Model/System/Block")
         self.system_line_data = self.root_data.findall("./Model/System/Line")
+    def get_parameter(self,element):
+        return element.findall("./P")
     def element_hasChild(self,element:ET.Element):
         if len(element):
             return True
@@ -20,4 +22,5 @@ if __name__ == '__main__':
     test = XML_Parser()
     test.convert_xml("..\\test\\Test_XML.xml")
     test.get_system_data()
+    print(test.system_block_data)
 
