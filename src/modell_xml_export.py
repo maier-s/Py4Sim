@@ -2,7 +2,7 @@ import matlab.engine
 import os
 class Simulink_XML_Exporter:
     matlab_engine = None
-    def __int__(self):
+    def __init__(self):
         if self.connectToMatlab():
             print(f'SUCESS: Connection to Matlab established')
         else:
