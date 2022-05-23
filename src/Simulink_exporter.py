@@ -22,4 +22,3 @@ class Simulink_Exporter:
 
 if __name__ == '__main__':
     Test = Simulink_Exporter()
-    Test.export_XML_from_model("C:\\Users\\MaierS3\\PycharmProjects\\Py4Sim\\test","Test")
