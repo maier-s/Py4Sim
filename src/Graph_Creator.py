@@ -1,8 +1,13 @@
 import Graph
 from XML_Parser import XML_Parser
-from Blocks import Block_CG
+from Blocks import P4S_Sin
 class Graph_Creator:
     cal_Vertex = {}
+    block_factory_dict = {
+        "Sin" : P4S_Sin.Sin(),
+        "SubSystem": "Graph",
+        "Scope": "Scope"
+    }
     def __init__(self, path: str):
         self.XML_Parser = XML_Parser()
         self.XML_Parser.convert_xml(path)
@@ -10,9 +15,12 @@ class Graph_Creator:
         self.createVertex()
         self.createEdges()
     def createVertex(self):
-        for Block in self.XML_Parser.systemBlockData.keys():
-            new_Vertex = self.calGraph.add_vertex(containter=Block)
-            self.cal_Vertex[new_Vertex.container] = new_Vertex
+        for name,property in self.XML_Parser.systemBlockData.items():
+            #print(property)
+            new_Vertex = self.calGraph.add_vertex(containter=self.block_factory_dict[property["BlockType"]])
+            if(name == "Sine Wave"):
+                print(new_Vertex.container.step_func(0.05))
+            self.cal_Vertex[name] = new_Vertex
         self.calGraph.print_matrix()
         print(self.cal_Vertex)
 

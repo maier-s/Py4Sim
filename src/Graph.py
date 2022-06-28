@@ -24,6 +24,7 @@ class Graph:
         return True
     def add_vertex(self,containter=None):
         new_Vertex = Vertex(len(self.vertex),containter)
+        print(f"Vertex {containter} is ID {len(self.vertex)}")
         self.vertex.append(new_Vertex)
         self.__appendAdjMatrix__()
         return new_Vertex
